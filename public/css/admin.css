@@ -1,0 +1,105 @@
+/* ============ Admin Confesercenti Pavia ============ */
+:root {
+  --g900: #123a30; --g700: #1e5c4b; --g500: #349b7b; --g100: #e3f2ec; --g50: #f2f9f6;
+  --ink: #1b2622; --soft: #5a6a63; --line: rgba(18,58,48,.12);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body.admin {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: #f4f7f5; color: var(--ink); display: flex; min-height: 100vh; line-height: 1.55;
+}
+a { color: var(--g700); text-decoration: none; }
+h1 { font-size: 1.5rem; margin-bottom: 8px; color: var(--g900); }
+h2 { font-size: 1.15rem; color: var(--g900); margin-bottom: 12px; }
+.muted { color: var(--soft); font-size: .9rem; }
+
+/* sidebar */
+.sidebar {
+  width: 230px; background: var(--g900); color: #cfe0d9; padding: 22px 14px;
+  display: flex; flex-direction: column; gap: 18px; position: sticky; top: 0; height: 100vh;
+}
+.side-brand { font-weight: 800; font-size: 1.2rem; color: #fff; padding: 0 10px; }
+.side-brand span { font-weight: 400; color: #9fd2bd; font-size: .9rem; }
+.sidebar nav { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.sidebar nav a { color: #cfe0d9; padding: 10px 12px; border-radius: 8px; font-size: .93rem; }
+.sidebar nav a:hover { background: rgba(255,255,255,.08); color: #fff; }
+.sidebar nav a.active { background: var(--g700); color: #fff; font-weight: 600; }
+.side-foot { display: flex; flex-direction: column; gap: 6px; font-size: .85rem; padding: 0 10px; border-top: 1px solid rgba(255,255,255,.12); padding-top: 14px; }
+.side-foot span { color: #fff; font-weight: 600; }
+.side-foot a { color: #9fd2bd; }
+
+.admin-main { flex: 1; padding: 34px 40px; max-width: 1000px; }
+
+/* login */
+.login-wrap { display: grid; place-items: center; min-height: 100vh; width: 100%; background: linear-gradient(150deg, var(--g900), var(--g700)); }
+.login-card { background: #fff; padding: 40px; border-radius: 18px; width: min(400px, 92vw); box-shadow: 0 30px 60px -20px rgba(0,0,0,.35); }
+.login-card h1 { margin-bottom: 18px; }
+.login-card label { display: block; font-weight: 600; font-size: .88rem; margin-bottom: 14px; color: var(--g900); }
+.login-card input { width: 100%; margin-top: 6px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; font-size: .95rem; }
+.login-card .btn { width: 100%; margin-top: 6px; }
+
+/* buttons & pills */
+.btn {
+  display: inline-block; background: var(--g700); color: #fff; border: 0; cursor: pointer;
+  padding: 11px 20px; border-radius: 10px; font-weight: 600; font-size: .92rem;
+}
+.btn:hover { background: var(--g500); }
+.btn-secondary { background: var(--g100); color: var(--g900); }
+.btn-secondary:hover { background: #d3e9df; }
+.pill { padding: 3px 10px; border-radius: 999px; font-size: .78rem; font-weight: 600; }
+.pill-ok { background: var(--g100); color: var(--g700); }
+.pill-off { background: #eee; color: #777; }
+.link-danger { background: none; border: 0; color: #b33; cursor: pointer; font-size: .88rem; padding: 0; }
+.link-danger:hover { text-decoration: underline; }
+
+/* layout pieces */
+.page-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; gap: 12px; flex-wrap: wrap; }
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
+.stat-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 20px; transition: .2s; }
+.stat-card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -14px rgba(18,58,48,.3); }
+.stat-card strong { display: block; font-size: 1.7rem; color: var(--g900); }
+.stat-card span { color: var(--soft); font-size: .88rem; }
+.stat-hot { border-color: var(--g500); background: var(--g50); }
+.quick-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* forms */
+.panel-form fieldset { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px; margin-bottom: 18px; }
+.panel-form legend { font-weight: 700; color: var(--g900); padding: 0 8px; }
+.panel-form label { display: block; font-weight: 600; font-size: .86rem; color: var(--g900); margin-bottom: 14px; }
+.panel-form input, .panel-form textarea, .panel-form select {
+  width: 100%; margin-top: 6px; padding: 10px 13px; border: 1px solid var(--line);
+  border-radius: 9px; font-size: .93rem; font-family: inherit; background: #fff;
+}
+.panel-form input:focus, .panel-form textarea:focus, .panel-form select:focus {
+  outline: none; border-color: var(--g500); box-shadow: 0 0 0 3px rgba(52,155,123,.14);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.check { display: flex; align-items: center; gap: 8px; }
+.check input { width: auto; margin: 0; }
+.thumb { max-height: 60px; margin-top: 8px; border-radius: 8px; }
+
+/* table */
+.table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+.table th { text-align: left; font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--soft); padding: 12px 16px; background: var(--g50); }
+.table td { padding: 13px 16px; border-top: 1px solid var(--line); font-size: .92rem; vertical-align: middle; }
+.row-actions { display: flex; gap: 14px; align-items: center; }
+.row-actions form { display: inline; }
+
+/* messages */
+.msg-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin-bottom: 14px; }
+.msg-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
+.msg-meta { font-size: .88rem; color: var(--soft); margin-bottom: 10px; }
+.msg-body { background: var(--g50); border-radius: 10px; padding: 14px; font-size: .93rem; margin-bottom: 10px; white-space: pre-wrap; }
+
+.alert { padding: 12px 16px; border-radius: 10px; margin-bottom: 16px; font-weight: 500; font-size: .92rem; }
+.alert-ok { background: var(--g100); color: var(--g700); }
+.alert-err { background: #fdeaea; color: #a33; }
+
+@media (max-width: 860px) {
+  body.admin { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: static; }
+  .sidebar nav { flex-direction: row; flex-wrap: wrap; }
+  .admin-main { padding: 22px 16px; }
+  .stat-grid, .form-row, .form-row-3 { grid-template-columns: 1fr; }
+}

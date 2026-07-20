@@ -1,0 +1,55 @@
+<%- include('_head', { pageTitle: 'Partnership' }) %>
+
+<section class="page-hero page-hero--mint">
+  <div class="site-container page-hero__grid">
+    <div>
+      <p class="page-hero__context">Competenze che si incontrano</p>
+      <h1>Partnership</h1>
+    </div>
+    <p class="page-hero__lead">Collaborazioni selezionate per portare alle imprese del territorio servizi, strumenti e opportunità in più.</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="partners-title">
+  <div class="site-container">
+    <div class="section-heading">
+      <div>
+        <p class="section-context">La nostra rete operativa</p>
+        <h2 id="partners-title">Partner che aggiungono valore.</h2>
+      </div>
+      <p>Ogni collaborazione nasce da un obiettivo concreto: rendere le imprese pavesi più forti, preparate e competitive.</p>
+    </div>
+
+    <% if (partner.length) { %>
+      <div class="partner-directory">
+        <% partner.forEach((item, index) => { %>
+          <article>
+            <span class="partner-directory__number"><%= String(index + 1).padStart(2, '0') %></span>
+            <% if (item.image) { %><img src="<%= item.image %>" alt="Logo <%= item.title %>" width="320" height="180" loading="lazy"><% } %>
+            <div>
+              <% if (item.tag) { %><p class="partner-directory__tag"><%= item.tag %></p><% } %>
+              <h3><a href="/partnership/<%= item.slug %>"><%= item.title %></a></h3>
+              <% if (item.excerpt) { %><p><%= item.excerpt %></p><% } %>
+            </div>
+            <a class="text-link" href="/partnership/<%= item.slug %>" aria-label="Scopri la partnership con <%= item.title %>">Scopri <span aria-hidden="true">→</span></a>
+          </article>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="empty-state">
+        <h3>La rete delle partnership è in aggiornamento.</h3>
+        <p>Vuoi proporre una collaborazione utile alle imprese del territorio?</p>
+        <a class="button button--primary" href="/contatti">Proponi una partnership</a>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<section class="partnership-callout">
+  <div class="site-container partnership-callout__inner">
+    <p>Hai un progetto, un servizio o un’opportunità concreta per le imprese pavesi?</p>
+    <a class="button button--citrus" href="/contatti">Costruiamo qualcosa insieme <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<%- include('_foot') %>

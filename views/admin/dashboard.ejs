@@ -1,0 +1,25 @@
+<%- include('_head') %>
+<h1>Dashboard</h1>
+<p class="muted">Benvenuto, <%= user.name %>. Da qui gestisci tutti i contenuti del sito.</p>
+
+<div class="stat-grid">
+  <% for (const [k, v] of Object.entries(TYPES)) { %>
+    <a class="stat-card" href="/admin/contenuti/<%= k %>">
+      <strong><%= counts[k] %></strong>
+      <span><%= v.label %></span>
+    </a>
+  <% } %>
+  <a class="stat-card <%= counts.messaggi ? 'stat-hot' : '' %>" href="/admin/messaggi">
+    <strong><%= counts.messaggi %></strong>
+    <span>Richieste da leggere</span>
+  </a>
+</div>
+
+<h2 style="margin-top:36px">Azioni rapide</h2>
+<div class="quick-actions">
+  <a class="btn" href="/admin/contenuti/notizie/nuovo">+ Nuova notizia</a>
+  <a class="btn" href="/admin/contenuti/stampa/nuovo">+ Nuovo comunicato</a>
+  <a class="btn" href="/admin/contenuti/partnership/nuovo">+ Nuovo partner</a>
+  <a class="btn btn-secondary" href="/admin/impostazioni">Modifica pagine e contatti</a>
+</div>
+<%- include('_foot') %>

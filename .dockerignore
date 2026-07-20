@@ -1,0 +1,9 @@
+node_modules/
+data/
+.env*
+.railway/
+.atl/
+.claude/
+.DS_Store
+*.log
+.git/

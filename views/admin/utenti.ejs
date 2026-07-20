@@ -1,0 +1,45 @@
+<%- include('_head') %>
+<h1>Utenti</h1>
+<% if (error) { %><div class="alert alert-err"><%= error %></div><% } %>
+
+<table class="table">
+  <thead><tr><th>Nome</th><th>Email</th><th>Ruolo</th><th>Creato</th><th></th></tr></thead>
+  <tbody>
+    <% users.forEach(u => { %>
+    <tr>
+      <td><strong><%= u.name %></strong></td>
+      <td><%= u.email %></td>
+      <td><span class="pill <%= u.role === 'superadmin' ? 'pill-ok' : 'pill-off' %>"><%= u.role %></span></td>
+      <td class="muted"><%= u.created_at.slice(0,10) %></td>
+      <td class="row-actions">
+        <% if (u.id !== user.id) { %>
+        <form method="POST" action="/admin/utenti/<%= u.id %>/elimina" onsubmit="return confirm('Eliminare <%= u.email %>?')">
+          <button type="submit" class="link-danger">Elimina</button>
+        </form>
+        <% } else { %><span class="muted">(tu)</span><% } %>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<h2 style="margin-top:32px">Aggiungi utente</h2>
+<form method="POST" action="/admin/utenti/nuovo" class="panel-form">
+  <fieldset>
+    <div class="form-row">
+      <label>Nome *<input name="name" required></label>
+      <label>Email *<input type="email" name="email" required></label>
+    </div>
+    <div class="form-row">
+      <label>Password (min 8) *<input type="password" name="password" required minlength="8"></label>
+      <label>Ruolo
+        <select name="role">
+          <option value="editor">Editor (modifica contenuti)</option>
+          <option value="superadmin">Super admin (tutto + utenti)</option>
+        </select>
+      </label>
+    </div>
+    <button type="submit" class="btn">Crea utente</button>
+  </fieldset>
+</form>
+<%- include('_foot') %>

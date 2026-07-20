@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Admin — <%= site.name %></title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin">
+<% if (user) { %>
+<aside class="sidebar">
+  <div class="side-brand">CP <span>Admin</span></div>
+  <nav>
+    <a href="/admin" class="<%= path === '/admin' ? 'active' : '' %>">Dashboard</a>
+    <a href="/admin/impostazioni" class="<%= path.startsWith('/admin/impostazioni') ? 'active' : '' %>">Sito &amp; Pagine</a>
+    <a href="/admin/contenuti/servizi" class="<%= path.includes('/servizi') ? 'active' : '' %>">Servizi</a>
+    <a href="/admin/contenuti/convenzioni" class="<%= path.includes('/convenzioni') ? 'active' : '' %>">Convenzioni</a>
+    <a href="/admin/contenuti/notizie" class="<%= path.includes('/notizie') ? 'active' : '' %>">Notizie</a>
+    <a href="/admin/contenuti/stampa" class="<%= path.includes('/stampa') ? 'active' : '' %>">Sala stampa</a>
+    <a href="/admin/contenuti/partnership" class="<%= path.includes('/partnership') ? 'active' : '' %>">Partnership</a>
+    <a href="/admin/contenuti/banner" class="<%= path.includes('/banner') ? 'active' : '' %>">Banner ADV</a>
+    <a href="/admin/messaggi" class="<%= path.startsWith('/admin/messaggi') ? 'active' : '' %>">Richieste</a>
+    <% if (user.role === 'superadmin') { %>
+      <a href="/admin/utenti" class="<%= path.startsWith('/admin/utenti') ? 'active' : '' %>">Utenti</a>
+    <% } %>
+  </nav>
+  <div class="side-foot">
+    <span><%= user.name %></span>
+    <a href="/" target="_blank">Vedi sito ↗</a>
+    <a href="/admin/logout">Esci</a>
+  </div>
+</aside>
+<% } %>
+<main class="admin-main">

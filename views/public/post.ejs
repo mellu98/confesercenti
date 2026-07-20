@@ -1,0 +1,39 @@
+<%- include('_head', { pageTitle: post.title }) %>
+<%
+  const rawDate = String(post.created_at || '').slice(0, 10);
+  const dateParts = rawDate.split('-');
+  const displayDate = dateParts.length === 3 ? dateParts.reverse().join('/') : '';
+%>
+
+<article class="article-page">
+  <header class="article-header">
+    <div class="site-container article-header__inner">
+      <a href="<%= back %>" class="back-link"><span aria-hidden="true">←</span> <%= backLabel %></a>
+      <p class="news-meta news-meta--light">
+        <% if (post.tag) { %><span><%= post.tag %></span><% } %>
+        <% if (displayDate) { %><time datetime="<%= rawDate %>"><%= displayDate %></time><% } %>
+      </p>
+      <h1><%= post.title %></h1>
+      <% if (post.excerpt) { %><p class="article-header__standfirst"><%= post.excerpt %></p><% } %>
+    </div>
+  </header>
+
+  <div class="site-container article-layout">
+    <div class="article-content">
+      <% if (post.image) { %><img class="article-image" src="<%= post.image %>" alt="<%= post.title %>" width="1200" height="750"><% } %>
+      <div class="prose prose--article">
+        <% const paragraphs = String(post.body || '').split(/\r?\n\r?\n/).filter(paragraph => paragraph.trim()); %>
+        <% if (paragraphs.length) { %>
+          <% paragraphs.forEach(paragraph => { %><p><%= paragraph %></p><% }) %>
+        <% } else if (post.excerpt) { %>
+          <p><%= post.excerpt %></p>
+        <% } %>
+        <% if (post.link) { %><p><a class="button button--outline" href="<%= post.link %>" target="_blank" rel="noopener">Approfondisci <span aria-hidden="true">↗</span></a></p><% } %>
+      </div>
+    </div>
+
+    <%- include('_aside') %>
+  </div>
+</article>
+
+<%- include('_foot') %>

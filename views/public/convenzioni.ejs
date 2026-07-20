@@ -1,0 +1,50 @@
+<%- include('_head', { pageTitle: 'Convenzioni' }) %>
+
+<section class="page-hero page-hero--mint">
+  <div class="site-container page-hero__grid">
+    <div>
+      <p class="page-hero__context">Vantaggi per i soci</p>
+      <h1>Convenzioni</h1>
+    </div>
+    <p class="page-hero__lead">La forza della rete diventa risparmio, condizioni dedicate e strumenti migliori per la tua impresa.</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="conventions-title">
+  <div class="site-container conventions-layout">
+    <div class="conventions-intro">
+      <p class="section-context">Riservato alle imprese associate</p>
+      <h2 id="conventions-title">Vantaggi da usare, non solo da raccontare.</h2>
+      <p>Scopri le condizioni disponibili e contattaci per capire come attivarle.</p>
+      <a class="button button--primary" href="/contatti">Voglio associarmi</a>
+    </div>
+
+    <% if (convenzioni.length) { %>
+      <div class="conventions-list">
+        <% convenzioni.forEach((convention, index) => { %>
+          <article>
+            <span class="conventions-list__number"><%= String(index + 1).padStart(2, '0') %></span>
+            <div>
+              <% if (convention.tag) { %><p class="conventions-list__tag"><%= convention.tag %></p><% } %>
+              <h3><%= convention.title %></h3>
+              <% if (convention.excerpt) { %><p><%= convention.excerpt %></p><% } %>
+              <% if (convention.link) { %>
+                <a class="text-link" href="<%= convention.link %>" target="_blank" rel="noopener">Apri la convenzione <span aria-hidden="true">↗</span></a>
+              <% } else { %>
+                <a class="text-link" href="/contatti">Chiedi come accedere <span aria-hidden="true">→</span></a>
+              <% } %>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="empty-state empty-state--mint">
+        <h3>Stiamo aggiornando le convenzioni.</h3>
+        <p>Contattaci per conoscere le opportunità attualmente disponibili.</p>
+        <a class="text-link" href="/contatti">Scrivici <span aria-hidden="true">→</span></a>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('_foot') %>

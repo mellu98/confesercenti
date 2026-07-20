@@ -1,0 +1,59 @@
+<%- include('_head', { pageTitle: 'Associazione' }) %>
+
+<section class="page-hero page-hero--forest">
+  <div class="site-container page-hero__grid">
+    <div>
+      <p class="page-hero__context">Confesercenti Pavia</p>
+      <h1><%= page.title || 'L’associazione' %></h1>
+    </div>
+    <% if (page.intro) { %><p class="page-hero__lead"><%= page.intro %></p><% } %>
+  </div>
+</section>
+
+<section class="section">
+  <div class="site-container story-layout">
+    <aside class="story-index" aria-label="Il nostro impegno">
+      <p>Il nostro impegno</p>
+      <ul>
+        <li>Rappresentare chi fa impresa</li>
+        <li>Risolvere problemi concreti</li>
+        <li>Connettere territorio e opportunità</li>
+      </ul>
+    </aside>
+
+    <div class="prose prose--large">
+      <% const paragraphs = String(page.body || '').split(/\r?\n\r?\n/).filter(paragraph => paragraph.trim()); %>
+      <% if (paragraphs.length) { %>
+        <% paragraphs.forEach(paragraph => { %><p><%= paragraph %></p><% }) %>
+      <% } else { %>
+        <p>Confesercenti Pavia lavora ogni giorno accanto alle imprese del commercio, del turismo, dell’artigianato e dei servizi.</p>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<section class="association-paths" aria-labelledby="association-paths-title">
+  <div class="site-container">
+    <h2 id="association-paths-title">Una presenza che diventa azione.</h2>
+    <div class="association-paths__grid">
+      <div>
+        <span>Rappresentanza</span>
+        <h3>La voce delle imprese nei luoghi che contano.</h3>
+        <p>Portiamo esigenze, proposte e prospettive del tessuto economico pavese nel confronto con istituzioni e territorio.</p>
+      </div>
+      <div>
+        <span>Servizi</span>
+        <h3>Competenze vicine alle decisioni quotidiane.</h3>
+        <p>Dalla fiscalità al lavoro, dalle pratiche al credito: un riferimento unico per gestire e sviluppare l’attività.</p>
+      </div>
+      <div>
+        <span>Rete</span>
+        <h3>Più relazioni, vantaggi e opportunità.</h3>
+        <p>La rete locale e nazionale mette in connessione imprese, professionisti, convenzioni e progetti.</p>
+      </div>
+    </div>
+    <a class="button button--primary" href="/contatti">Entra nella rete <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<%- include('_foot') %>

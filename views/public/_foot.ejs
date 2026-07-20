@@ -1,0 +1,96 @@
+</main>
+
+<% const opportunities = [...(banners.sidebar || []), ...(banners.bottom || [])]; %>
+<% if (opportunities.length) { %>
+<section class="opportunity-band" aria-labelledby="opportunity-title">
+  <div class="site-container">
+    <div class="section-heading section-heading--compact">
+      <div>
+        <p class="section-context">Dalla rete locale</p>
+        <h2 id="opportunity-title">Opportunità dal territorio</h2>
+      </div>
+      <a href="/partnership">Scopri le partnership <span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="opportunity-band__list">
+      <% opportunities.forEach((banner, index) => { %>
+        <% if (banner.link) { %>
+          <a class="opportunity-band__item<%= banner.image ? ' opportunity-band__item--media' : '' %>" href="<%= banner.link %>" target="_blank" rel="noopener sponsored">
+            <% if (banner.image) { %><img src="<%= banner.image %>" alt="" width="640" height="360" loading="lazy"><% } %>
+            <span>
+              <small>Opportunità <%= String(index + 1).padStart(2, '0') %></small>
+              <strong><%= banner.title || 'Iniziativa per le imprese' %></strong>
+            </span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        <% } else { %>
+          <div class="opportunity-band__item<%= banner.image ? ' opportunity-band__item--media' : '' %>">
+            <% if (banner.image) { %><img src="<%= banner.image %>" alt="" width="640" height="360" loading="lazy"><% } %>
+            <span>
+              <small>Opportunità <%= String(index + 1).padStart(2, '0') %></small>
+              <strong><%= banner.title || 'Spazio per le imprese del territorio' %></strong>
+            </span>
+          </div>
+        <% } %>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<section class="contact-panel" aria-labelledby="contact-panel-title">
+  <div class="site-container contact-panel__inner">
+    <div>
+      <p class="section-context">Una risposta concreta</p>
+      <h2 id="contact-panel-title">Partiamo dalla tua impresa.</h2>
+      <p>Raccontaci cosa ti serve: troviamo insieme il servizio, il vantaggio o la persona giusta.</p>
+    </div>
+    <div class="contact-panel__actions">
+      <% if (site.phone) { %><a class="contact-panel__direct" href="tel:<%= String(site.phone).replace(/\s+/g, '') %>"><small>Chiamaci</small><strong><%= site.phone %></strong></a><% } %>
+      <% if (site.email) { %><a class="contact-panel__direct" href="mailto:<%= site.email %>"><small>Scrivici</small><strong><%= site.email %></strong></a><% } %>
+      <a class="button button--forest" href="/contatti">Parla con noi <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="site-container footer-grid">
+    <div class="footer-brand">
+      <a href="/" aria-label="Confesercenti Pavia, home">
+        <img src="/images/logo-confesercenti-pavia.png" alt="Confesercenti Pavia" width="640" height="270" loading="lazy">
+      </a>
+      <% if (site.tagline) { %><p><%= site.tagline %></p><% } %>
+    </div>
+
+    <div>
+      <h2>Orientati</h2>
+      <ul class="footer-links">
+        <li><a href="/associazione">L’associazione</a></li>
+        <li><a href="/servizi">Servizi per l’impresa</a></li>
+        <li><a href="/convenzioni">Vantaggi per i soci</a></li>
+        <li><a href="/notizie">Aggiornamenti</a></li>
+        <li><a href="/stampa">Sala stampa</a></li>
+        <li><a href="/partnership">Partnership</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>Vieni a trovarci</h2>
+      <address>
+        <% if (site.address) { %><span><%= site.address %></span><% } %>
+        <% if (site.hours) { %><span><%= site.hours %></span><% } %>
+        <% if (site.phone) { %><a href="tel:<%= String(site.phone).replace(/\s+/g, '') %>"><%= site.phone %></a><% } %>
+        <% if (site.email) { %><a href="mailto:<%= site.email %>"><%= site.email %></a><% } %>
+      </address>
+    </div>
+  </div>
+
+  <div class="site-container footer-bottom">
+    <span>© <%= new Date().getFullYear() %> Confesercenti Pavia</span>
+    <span>Sito realizzato da <a href="/partnership">Sarconix</a></span>
+  </div>
+</footer>
+
+<script src="/js/main.js" defer></script>
+</body>
+</html>

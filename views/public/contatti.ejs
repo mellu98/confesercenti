@@ -1,0 +1,107 @@
+<%- include('_head', { pageTitle: 'Contatti' }) %>
+
+<section class="page-hero page-hero--citrus">
+  <div class="site-container page-hero__grid">
+    <div>
+      <p class="page-hero__context">Iniziamo da una conversazione</p>
+      <h1>Contatti</h1>
+    </div>
+    <% if (page.intro) { %><p class="page-hero__lead"><%= page.intro %></p><% } %>
+  </div>
+</section>
+
+<section class="section">
+  <div class="site-container contact-layout">
+    <section class="contact-direct" aria-labelledby="direct-title">
+      <p class="section-context">Contatto diretto</p>
+      <h2 id="direct-title">Scegli il modo più semplice per te.</h2>
+      <p>Non serve conoscere già l’ufficio giusto. Raccontaci il bisogno e ti indirizziamo noi.</p>
+
+      <address class="contact-direct__list">
+        <% if (site.phone) { %>
+          <a href="tel:<%= String(site.phone).replace(/\s+/g, '') %>">
+            <small>Telefono</small>
+            <strong><%= site.phone %></strong>
+            <span aria-hidden="true">→</span>
+          </a>
+        <% } %>
+        <% if (site.email) { %>
+          <a href="mailto:<%= site.email %>">
+            <small>Email</small>
+            <strong><%= site.email %></strong>
+            <span aria-hidden="true">→</span>
+          </a>
+        <% } %>
+        <% if (site.address) { %>
+          <div>
+            <small>Sede</small>
+            <strong><%= site.address %></strong>
+          </div>
+        <% } %>
+        <% if (site.hours) { %>
+          <div>
+            <small>Orari</small>
+            <strong><%= site.hours %></strong>
+          </div>
+        <% } %>
+      </address>
+    </section>
+
+    <section class="contact-form-panel" aria-labelledby="form-title">
+      <p class="section-context">Scrivi agli uffici</p>
+      <h2 id="form-title">Raccontaci cosa ti serve.</h2>
+
+      <% if (sent) { %>
+        <div class="alert alert--success" role="status" tabindex="-1" id="form-feedback">Messaggio inviato correttamente. Ti risponderemo al più presto.</div>
+      <% } %>
+      <% if (error) { %>
+        <div class="alert alert--error" role="alert" id="form-feedback"><%= error %></div>
+      <% } %>
+
+      <form method="POST" action="/contatti" class="contact-form"<% if (sent || error) { %> aria-describedby="form-feedback"<% } %>>
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Lascia vuoto questo campo</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="name">Nome e cognome <span aria-hidden="true">*</span></label>
+            <input type="text" id="name" name="name" required maxlength="120" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="email">Email <span aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" required maxlength="160" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="phone">Telefono</label>
+            <input type="tel" id="phone" name="phone" maxlength="40" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="subject">Di cosa vuoi parlare?</label>
+            <select id="subject" name="subject">
+              <option>Informazioni generali</option>
+              <option>Voglio associarmi</option>
+              <option>Richiesta servizi</option>
+              <option>Convenzioni</option>
+              <option>Proposta di partnership</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="body">Messaggio <span aria-hidden="true">*</span></label>
+          <textarea id="body" name="body" rows="7" required maxlength="4000"></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="button button--primary">Invia il messaggio <span aria-hidden="true">→</span></button>
+          <p>I campi contrassegnati con * sono obbligatori.</p>
+        </div>
+        <p class="privacy-note">Inviando il modulo acconsenti al trattamento dei dati ai sensi del GDPR (Reg. UE 2016/679) per la sola gestione della richiesta.</p>
+      </form>
+    </section>
+  </div>
+</section>
+
+<%- include('_foot') %>

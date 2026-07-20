@@ -1,0 +1,30 @@
+<%- include('_head') %>
+<div class="page-top">
+  <h1><%= cfg.label %></h1>
+  <a class="btn" href="/admin/contenuti/<%= sec %>/nuovo">+ Nuovo</a>
+</div>
+
+<% if (!items.length) { %>
+  <p class="muted">Nessun elemento. Creane uno con il pulsante «Nuovo».</p>
+<% } else { %>
+<table class="table">
+  <thead><tr><th>Titolo</th><th>Tag</th><th>Stato</th><th>Aggiornato</th><th></th></tr></thead>
+  <tbody>
+    <% items.forEach(i => { %>
+    <tr>
+      <td><a href="/admin/contenuti/<%= sec %>/<%= i.id %>"><strong><%= i.title %></strong></a></td>
+      <td><%= i.tag || '—' %></td>
+      <td><span class="pill <%= i.published ? 'pill-ok' : 'pill-off' %>"><%= i.published ? 'Pubblicato' : 'Bozza' %></span></td>
+      <td class="muted"><%= i.updated_at.slice(0,10) %></td>
+      <td class="row-actions">
+        <a href="/admin/contenuti/<%= sec %>/<%= i.id %>">Modifica</a>
+        <form method="POST" action="/admin/contenuti/<%= sec %>/<%= i.id %>/elimina" onsubmit="return confirm('Eliminare «<%= i.title %>»?')">
+          <button type="submit" class="link-danger">Elimina</button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<% } %>
+<%- include('_foot') %>

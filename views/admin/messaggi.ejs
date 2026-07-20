@@ -1,0 +1,22 @@
+<%- include('_head') %>
+<h1>Richieste dal sito</h1>
+<p class="muted">Messaggi ricevuti dal form contatti. <% if (!msgs.length) { %>Nessuna richiesta al momento.<% } %></p>
+
+<% msgs.forEach(m => { %>
+<div class="msg-card">
+  <div class="msg-head">
+    <strong><%= m.name %></strong>
+    <span class="muted"><%= m.created_at.replace('T',' ').slice(0,16) %></span>
+  </div>
+  <div class="msg-meta">
+    <a href="mailto:<%= m.email %>"><%= m.email %></a>
+    <% if (m.phone) { %> · <%= m.phone %><% } %>
+    <% if (m.subject) { %> · <span class="pill pill-ok"><%= m.subject %></span><% } %>
+  </div>
+  <p class="msg-body"><%= m.body %></p>
+  <form method="POST" action="/admin/messaggi/<%= m.id %>/elimina" onsubmit="return confirm('Eliminare questo messaggio?')">
+    <button type="submit" class="link-danger">Elimina</button>
+  </form>
+</div>
+<% }) %>
+<%- include('_foot') %>

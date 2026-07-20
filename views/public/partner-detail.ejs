@@ -1,0 +1,35 @@
+<%- include('_head', { pageTitle: p.title }) %>
+
+<article class="partner-page">
+  <header class="partner-header">
+    <div class="site-container partner-header__grid">
+      <div>
+        <a class="back-link" href="/partnership"><span aria-hidden="true">←</span> Partnership</a>
+        <% if (p.tag) { %><p class="page-hero__context"><%= p.tag %></p><% } %>
+        <h1><%= p.title %></h1>
+        <% if (p.excerpt) { %><p class="partner-header__lead"><%= p.excerpt %></p><% } %>
+      </div>
+      <% if (p.image) { %>
+        <figure>
+          <img src="<%= p.image %>" alt="Logo <%= p.title %>" width="640" height="400">
+        </figure>
+      <% } %>
+    </div>
+  </header>
+
+  <div class="site-container article-layout">
+    <div class="prose prose--article">
+      <% const paragraphs = String(p.body || '').split(/\r?\n\r?\n/).filter(paragraph => paragraph.trim()); %>
+      <% if (paragraphs.length) { %>
+        <% paragraphs.forEach(paragraph => { %><p><%= paragraph %></p><% }) %>
+      <% } else if (p.excerpt) { %>
+        <p><%= p.excerpt %></p>
+      <% } %>
+      <% if (p.link) { %><p><a class="button button--outline" href="<%= p.link %>" target="_blank" rel="noopener">Visita il sito <span aria-hidden="true">↗</span></a></p><% } %>
+    </div>
+
+    <%- include('_aside') %>
+  </div>
+</article>
+
+<%- include('_foot') %>

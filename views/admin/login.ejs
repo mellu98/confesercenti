@@ -1,0 +1,12 @@
+<%- include('_head') %>
+<div class="login-wrap">
+  <form method="POST" action="/admin/login" class="login-card">
+    <div class="side-brand" style="margin-bottom:20px">CP <span>Admin</span></div>
+    <h1>Accedi al pannello</h1>
+    <% if (error) { %><div class="alert alert-err"><%= error %></div><% } %>
+    <label>Email<input type="email" name="email" required autofocus></label>
+    <label>Password<input type="password" name="password" required></label>
+    <button type="submit" class="btn">Entra</button>
+  </form>
+</div>
+<%- include('_foot') %>

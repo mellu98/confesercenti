@@ -1,0 +1,48 @@
+<%- include('_head') %>
+<div class="page-top">
+  <h1><%= item ? 'Modifica' : 'Nuovo' %> — <%= cfg.label %></h1>
+  <a class="btn btn-secondary" href="/admin/contenuti/<%= sec %>">← Torna alla lista</a>
+</div>
+
+<form method="POST" action="/admin/contenuti/<%= sec %>/salva" enctype="multipart/form-data" class="panel-form">
+  <% if (item) { %>
+    <input type="hidden" name="id" value="<%= item.id %>">
+    <input type="hidden" name="current_image" value="<%= item.image %>">
+  <% } %>
+  <fieldset>
+    <legend>Contenuto</legend>
+    <label>Titolo *<input name="title" value="<%= item ? item.title : '' %>" required></label>
+    <div class="form-row">
+      <% if (sec === 'banner') { %>
+      <label>Posizione banner
+        <select name="tag">
+          <option value="sidebar" <%= item && item.tag === 'sidebar' ? 'selected' : '' %>>Colonna destra (300×250)</option>
+          <option value="bottom" <%= item && item.tag === 'bottom' ? 'selected' : '' %>>Fondo pagina (728×90)</option>
+        </select>
+      </label>
+      <% } else { %>
+      <label>Tag / categoria<input name="tag" value="<%= item ? item.tag : '' %>" placeholder="es. Eventi, Fisco, Partner digitale"></label>
+      <% } %>
+      <label>Link <%= sec === 'banner' ? 'di destinazione (cliccando il banner)' : 'esterno' %><input name="link" value="<%= item ? item.link : '' %>" placeholder="https://..."></label>
+    </div>
+    <% if (sec === 'banner') { %><p class="muted" style="margin-bottom:14px">Carica l'immagine del banner qui sotto. Senza immagine viene mostrato il placeholder «Spazio pubblicitario».</p><% } %>
+    <label>Descrizione breve<textarea name="excerpt" rows="2"><%= item ? item.excerpt : '' %></textarea></label>
+    <label>Testo completo (paragrafi separati da riga vuota)<textarea name="body" rows="10"><%= item ? item.body : '' %></textarea></label>
+  </fieldset>
+  <fieldset>
+    <legend>Opzioni</legend>
+    <div class="form-row-3">
+      <label>Immagine (max 3MB)
+        <input type="file" name="image" accept="image/*">
+        <% if (item && item.image) { %><img src="<%= item.image %>" class="thumb"><% } %>
+      </label>
+      <label>Ordine (0 = primo)<input type="number" name="sort" value="<%= item ? item.sort : 0 %>"></label>
+      <label>Slug URL<input name="slug" value="<%= item ? item.slug : '' %>" placeholder="auto dal titolo"></label>
+    </div>
+    <label class="check">
+      <input type="checkbox" name="published" <%= !item || item.published ? 'checked' : '' %>> Pubblicato sul sito
+    </label>
+  </fieldset>
+  <button type="submit" class="btn">Salva</button>
+</form>
+<%- include('_foot') %>

@@ -1,0 +1,198 @@
+<%- include('_head', { pageTitle: 'Home' }) %>
+<%
+  const serviceItems = Array.isArray(servizi) ? servizi : [];
+  const benefitItems = Array.isArray(convenzioni) ? convenzioni : [];
+  const newsItems = Array.isArray(notizie) ? notizie : [];
+  const partnerItems = Array.isArray(partner) ? partner : [];
+  const formatDate = value => {
+    const raw = String(value || '').slice(0, 10);
+    const parts = raw.split('-');
+    return parts.length === 3 ? parts.reverse().join('/') : '';
+  };
+%>
+
+<section class="hero">
+  <div class="site-container hero__grid">
+    <div class="hero__content">
+      <p class="hero__signal"><span aria-hidden="true"></span> Servizi e rappresentanza per chi fa impresa</p>
+      <h1>La tua impresa non è sola.</h1>
+      <p class="hero__lead">A Pavia c’è una rete che ascolta, rappresenta e risolve. Dalle pratiche quotidiane alle scelte che fanno crescere la tua attività, trovi servizi competenti, vantaggi riservati e persone con cui parlare.</p>
+      <div class="hero__actions">
+        <a class="button button--citrus" href="#servizi-home">Scopri i servizi <span aria-hidden="true">↓</span></a>
+        <a class="text-link text-link--light" href="/contatti">Parla con noi <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <figure class="hero__media">
+      <img src="/images/hero-pavia-impresa.webp" alt="Imprenditrice pavese al lavoro nella sua attività" width="1586" height="992" loading="eager" fetchpriority="high" decoding="async">
+      <figcaption>Il territorio cresce quando chi fa impresa trova gli strumenti giusti.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<nav class="task-shortcuts" aria-label="Cosa vuoi fare">
+  <div class="site-container task-shortcuts__list">
+    <a href="/servizi">
+      <span class="task-shortcuts__index">01</span>
+      <span><strong>Mi serve un servizio</strong><small>Fisco, lavoro, pratiche, credito, formazione e patronato</small></span>
+      <span aria-hidden="true">→</span>
+    </a>
+    <a href="/convenzioni">
+      <span class="task-shortcuts__index">02</span>
+      <span><strong>Voglio conoscere i vantaggi</strong><small>Condizioni e opportunità riservate alle imprese associate</small></span>
+      <span aria-hidden="true">→</span>
+    </a>
+    <a href="/contatti">
+      <span class="task-shortcuts__index">03</span>
+      <span><strong>Voglio parlare con un esperto</strong><small>Partiamo dal tuo bisogno e troviamo la persona giusta</small></span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</nav>
+
+<section class="section section--services" id="servizi-home" aria-labelledby="services-title">
+  <div class="site-container">
+    <div class="section-heading">
+      <div>
+        <p class="section-context">Uno sportello, molte competenze</p>
+        <h2 id="services-title">Cosa possiamo fare per te</h2>
+      </div>
+      <p>Ogni impresa ha un problema diverso. Il nostro lavoro è trasformarlo in un percorso semplice e concreto.</p>
+    </div>
+
+    <% if (serviceItems.length) { %>
+      <ol class="service-directory">
+        <% serviceItems.forEach((service, index) => { %>
+          <li class="service-directory__item">
+            <a href="/servizi">
+              <span class="service-directory__number"><%= String(index + 1).padStart(2, '0') %></span>
+              <span class="service-directory__copy">
+                <strong><%= service.title %></strong>
+                <% if (service.excerpt) { %><small><%= service.excerpt %></small><% } %>
+              </span>
+              <span class="service-directory__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        <% }) %>
+      </ol>
+    <% } else { %>
+      <div class="empty-state">
+        <h3>Stiamo aggiornando i servizi online.</h3>
+        <p>Il nostro team è comunque disponibile per orientarti.</p>
+        <a class="text-link" href="/contatti">Raccontaci cosa ti serve <span aria-hidden="true">→</span></a>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<section class="section section--benefits" aria-labelledby="benefits-title">
+  <div class="site-container benefits-layout">
+    <div class="benefits-intro">
+      <p class="section-context">Essere soci conviene davvero</p>
+      <h2 id="benefits-title">Più forza nelle scelte. Meno costi ogni giorno.</h2>
+      <p>Le convenzioni trasformano la forza della rete in vantaggi pratici per la tua attività.</p>
+      <a class="button button--outline" href="/convenzioni">Tutte le convenzioni</a>
+    </div>
+
+    <% if (benefitItems.length) { %>
+      <ul class="benefit-list">
+        <% benefitItems.forEach((benefit, index) => { %>
+          <li class="benefit-list__item">
+            <a href="/convenzioni">
+              <span><%= String(index + 1).padStart(2, '0') %></span>
+              <strong><%= benefit.title %></strong>
+              <% if (benefit.excerpt) { %><p><%= benefit.excerpt %></p><% } %>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <div class="empty-state empty-state--mint">
+        <h3>Le nuove convenzioni stanno arrivando.</h3>
+        <p>Contattaci per conoscere i vantaggi già disponibili per i soci.</p>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<section class="section section--updates" aria-labelledby="updates-title">
+  <div class="site-container">
+    <div class="section-heading">
+      <div>
+        <p class="section-context">Da sapere, quando serve</p>
+        <h2 id="updates-title">Aggiornamenti utili</h2>
+      </div>
+      <a href="/notizie">Tutte le notizie <span aria-hidden="true">→</span></a>
+    </div>
+
+    <% if (newsItems.length) { %>
+      <% const leadNews = newsItems[0]; const remainingNews = newsItems.slice(1); %>
+      <div class="updates-layout">
+        <article class="news-lead">
+          <% if (leadNews.image) { %>
+            <a class="news-lead__media" href="/notizie/<%= leadNews.slug %>" tabindex="-1" aria-hidden="true">
+              <img src="<%= leadNews.image %>" alt="" width="900" height="560" loading="lazy">
+            </a>
+          <% } %>
+          <div class="news-lead__body">
+            <p class="news-meta"><% if (leadNews.tag) { %><span><%= leadNews.tag %></span><% } %><% if (formatDate(leadNews.created_at)) { %><time datetime="<%= String(leadNews.created_at).slice(0, 10) %>"><%= formatDate(leadNews.created_at) %></time><% } %></p>
+            <h3><a href="/notizie/<%= leadNews.slug %>"><%= leadNews.title %></a></h3>
+            <% if (leadNews.excerpt) { %><p><%= leadNews.excerpt %></p><% } %>
+            <a class="text-link" href="/notizie/<%= leadNews.slug %>">Leggi l’aggiornamento <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <% if (remainingNews.length) { %>
+          <div class="news-list">
+            <% remainingNews.forEach(news => { %>
+              <article class="news-list__item">
+                <p class="news-meta"><% if (news.tag) { %><span><%= news.tag %></span><% } %><% if (formatDate(news.created_at)) { %><time datetime="<%= String(news.created_at).slice(0, 10) %>"><%= formatDate(news.created_at) %></time><% } %></p>
+                <h3><a href="/notizie/<%= news.slug %>"><%= news.title %></a></h3>
+                <% if (news.excerpt) { %><p><%= news.excerpt %></p><% } %>
+                <a class="text-link" href="/notizie/<%= news.slug %>" aria-label="Leggi: <%= news.title %>">Leggi <span aria-hidden="true">→</span></a>
+              </article>
+            <% }) %>
+          </div>
+        <% } %>
+      </div>
+    <% } else { %>
+      <div class="empty-state">
+        <h3>Nessun aggiornamento pubblicato al momento.</h3>
+        <p>Per informazioni su scadenze e opportunità puoi contattare direttamente i nostri uffici.</p>
+        <a class="text-link" href="/contatti">Parla con noi <span aria-hidden="true">→</span></a>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<section class="network-section" aria-labelledby="network-title">
+  <div class="site-container network-section__grid">
+    <div class="network-section__copy">
+      <p class="section-context">Rappresentanza, servizi, relazioni</p>
+      <h2 id="network-title"><%= home.hero_title || 'La forza delle imprese di Pavia' %></h2>
+      <p><%= home.hero_text || 'Siamo al fianco delle attività del territorio con competenze concrete e una rete che porta la voce delle imprese dove si prendono le decisioni.' %></p>
+      <div class="network-section__actions">
+        <a class="button button--light" href="/associazione">Conosci l’associazione</a>
+        <a class="text-link text-link--light" href="/contatti"><%= home.hero_cta || 'Diventa socio' %> <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <dl class="network-stats">
+      <% if (home.stat1_n || home.stat1_t) { %><div><dt><%= home.stat1_n %></dt><dd><%= home.stat1_t %></dd></div><% } %>
+      <% if (home.stat2_n || home.stat2_t) { %><div><dt><%= home.stat2_n %></dt><dd><%= home.stat2_t %></dd></div><% } %>
+      <% if (home.stat3_n || home.stat3_t) { %><div><dt><%= home.stat3_n %></dt><dd><%= home.stat3_t %></dd></div><% } %>
+    </dl>
+
+    <% if (partnerItems.length) { %>
+      <div class="network-partners">
+        <span>In rete con</span>
+        <% partnerItems.forEach(item => { %>
+          <a href="/partnership/<%= item.slug %>"><%= item.title %> <span aria-hidden="true">↗</span></a>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('_foot') %>

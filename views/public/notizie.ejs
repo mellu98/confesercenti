@@ -1,0 +1,72 @@
+<%- include('_head', { pageTitle: titolo }) %>
+<%
+  const isPress = base === '/stampa';
+  const contentItems = Array.isArray(posts) ? posts : [];
+  const formatDate = value => {
+    const raw = String(value || '').slice(0, 10);
+    const parts = raw.split('-');
+    return parts.length === 3 ? parts.reverse().join('/') : '';
+  };
+%>
+
+<section class="page-hero<%= isPress ? ' page-hero--forest' : '' %>">
+  <div class="site-container page-hero__grid">
+    <div>
+      <p class="page-hero__context"><%= isPress ? 'Comunicazione ufficiale' : 'Informazioni per decidere meglio' %></p>
+      <h1><%= titolo %></h1>
+    </div>
+    <p class="page-hero__lead"><%= isPress ? 'Comunicati, posizioni e materiali dell’associazione.' : 'Norme, opportunità, eventi e novità selezionati per le imprese di Pavia e provincia.' %></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="site-container content-with-support">
+    <div>
+      <% if (!contentItems.length) { %>
+        <div class="empty-state empty-state--press">
+          <span aria-hidden="true">—</span>
+          <h2><%= isPress ? 'Nessun comunicato stampa pubblicato' : 'Nessuna notizia pubblicata al momento' %>.</h2>
+          <p><%= isPress ? 'Per richieste stampa, dichiarazioni o materiali ufficiali puoi contattare direttamente l’associazione.' : 'Per informazioni urgenti su servizi, scadenze e opportunità puoi parlare con i nostri uffici.' %></p>
+          <a class="button button--primary" href="/contatti"><%= isPress ? 'Contatta l’ufficio' : 'Parla con noi' %></a>
+        </div>
+      <% } else { %>
+        <% const featured = contentItems[0]; const remaining = contentItems.slice(1); %>
+        <article class="archive-lead">
+          <% if (featured.image) { %>
+            <a class="archive-lead__media" href="<%= base %>/<%= featured.slug %>" tabindex="-1" aria-hidden="true">
+              <img src="<%= featured.image %>" alt="" width="960" height="600">
+            </a>
+          <% } %>
+          <div>
+            <p class="news-meta"><% if (featured.tag) { %><span><%= featured.tag %></span><% } %><% if (formatDate(featured.created_at)) { %><time datetime="<%= String(featured.created_at).slice(0, 10) %>"><%= formatDate(featured.created_at) %></time><% } %></p>
+            <h2><a href="<%= base %>/<%= featured.slug %>"><%= featured.title %></a></h2>
+            <% if (featured.excerpt) { %><p><%= featured.excerpt %></p><% } %>
+            <a class="text-link" href="<%= base %>/<%= featured.slug %>">Leggi <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <% if (remaining.length) { %>
+          <div class="archive-list">
+            <% remaining.forEach(item => { %>
+              <article>
+                <p class="news-meta"><% if (item.tag) { %><span><%= item.tag %></span><% } %><% if (formatDate(item.created_at)) { %><time datetime="<%= String(item.created_at).slice(0, 10) %>"><%= formatDate(item.created_at) %></time><% } %></p>
+                <div class="archive-list__content">
+                  <div>
+                    <h2><a href="<%= base %>/<%= item.slug %>"><%= item.title %></a></h2>
+                    <% if (item.excerpt) { %><p><%= item.excerpt %></p><% } %>
+                  </div>
+                  <% if (item.image) { %><img src="<%= item.image %>" alt="" width="480" height="300" loading="lazy"><% } %>
+                </div>
+                <a class="text-link" href="<%= base %>/<%= item.slug %>" aria-label="Leggi: <%= item.title %>">Leggi <span aria-hidden="true">→</span></a>
+              </article>
+            <% }) %>
+          </div>
+        <% } %>
+      <% } %>
+    </div>
+
+    <%- include('_aside') %>
+  </div>
+</section>
+
+<%- include('_foot') %>

@@ -1,0 +1,59 @@
+<%- include('_head', { pageTitle: 'Servizi' }) %>
+
+<section class="page-hero">
+  <div class="site-container page-hero__grid">
+    <div>
+      <p class="page-hero__context">Competenze per l’impresa</p>
+      <h1>Servizi</h1>
+    </div>
+    <p class="page-hero__lead">Un solo punto di accesso per affrontare con chiarezza pratiche, scadenze, persone e scelte di crescita.</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="services-directory-title">
+  <div class="site-container">
+    <div class="section-heading">
+      <div>
+        <p class="section-context">Dal bisogno alla soluzione</p>
+        <h2 id="services-directory-title">Trova il supporto giusto</h2>
+      </div>
+      <p>Non sai quale servizio scegliere? <a href="/contatti">Raccontaci la tua situazione</a>: ti orientiamo noi.</p>
+    </div>
+
+    <% if (servizi.length) { %>
+      <ol class="services-page-list">
+        <% servizi.forEach((service, index) => { %>
+          <li>
+            <div class="services-page-list__heading">
+              <span><%= String(index + 1).padStart(2, '0') %></span>
+              <div>
+                <% if (service.tag) { %><small><%= service.tag %></small><% } %>
+                <h3><%= service.title %></h3>
+              </div>
+            </div>
+            <div class="services-page-list__body">
+              <% if (service.excerpt) { %><p><%= service.excerpt %></p><% } %>
+              <% if (service.body) { %>
+                <details>
+                  <summary>Approfondisci il servizio</summary>
+                  <div class="prose prose--compact">
+                    <% String(service.body).split(/\r?\n\r?\n/).forEach(paragraph => { if (paragraph.trim()) { %><p><%= paragraph %></p><% } }) %>
+                  </div>
+                </details>
+              <% } %>
+              <a class="text-link" href="/contatti">Parla con l’ufficio <span aria-hidden="true">→</span></a>
+            </div>
+          </li>
+        <% }) %>
+      </ol>
+    <% } else { %>
+      <div class="empty-state">
+        <h3>Il catalogo servizi è in aggiornamento.</h3>
+        <p>I nostri uffici restano operativi: contattaci e ti indirizzeremo alla persona giusta.</p>
+        <a class="button button--primary" href="/contatti">Contattaci</a>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('_foot') %>
