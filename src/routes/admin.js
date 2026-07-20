@@ -7,17 +7,33 @@ const { db, DATA_DIR, getSetting, setSetting, hashPassword, verifyPassword, slug
 const router = express.Router();
 
 // ---- upload immagini ----
+const allowedImageTypes = new Map([
+  ['image/png', '.png'],
+  ['image/jpeg', '.jpg'],
+  ['image/webp', '.webp'],
+  ['image/gif', '.gif']
+]);
+const allowedImageExtensions = new Set(['.png', '.jpg', '.jpeg', '.webp', '.gif']);
+
+function isAllowedImage(file) {
+  const ext = path.extname(file.originalname || '').toLowerCase();
+  return allowedImageTypes.has(file.mimetype) && allowedImageExtensions.has(ext);
+}
+
 const storage = multer.diskStorage({
   destination: path.join(DATA_DIR, 'uploads'),
   filename: (req, file, cb) => {
-    const ext = (path.extname(file.originalname) || '.jpg').toLowerCase();
-    cb(null, crypto.randomBytes(8).toString('hex') + ext);
+    const ext = path.extname(file.originalname || '').toLowerCase();
+    cb(null, crypto.randomBytes(8).toString('hex') + (allowedImageExtensions.has(ext) ? ext : allowedImageTypes.get(file.mimetype)));
   }
 });
 const upload = multer({
   storage,
   limits: { fileSize: 3 * 1024 * 1024 },
-  fileFilter: (req, file, cb) => cb(null, /^image\/(png|jpe?g|webp|gif|svg)/.test(file.mimetype))
+  fileFilter: (req, file, cb) => {
+    if (!isAllowedImage(file)) return cb(new multer.MulterError('LIMIT_UNEXPECTED_FILE', file.fieldname));
+    return cb(null, true);
+  }
 });
 
 // ---- auth ----

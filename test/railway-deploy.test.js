@@ -140,3 +140,34 @@ test('README presents Railway as the primary Dockerfile deployment path', () => 
   assert.match(readme, /\/app\/data/);
   assert.doesNotMatch(readme, /^## Deploy su Coolify/m);
 });
+
+test('production dependency policy requires safe Nodemailer and a matching lockfile', () => {
+  const pkg = JSON.parse(read('package.json'));
+  const lock = JSON.parse(read('package-lock.json'));
+
+  assert.equal(pkg.dependencies.nodemailer, '9.0.3');
+  assert.equal(lock.packages[''].dependencies.nodemailer, '9.0.3');
+  assert.equal(lock.packages['node_modules/nodemailer'].version, '9.0.3');
+});
+
+test('production session cookies are explicitly secure behind Railway proxy', () => {
+  const server = read('server.js');
+
+  assert.match(server, /app\.set\(['"]trust proxy['"],\s*1\)/);
+  assert.match(server, /secure:\s*isProduction/);
+  assert.match(server, /sameSite:\s*['"]lax['"]/);
+  assert.match(server, /httpOnly:\s*true/);
+});
+
+test('admin image uploads reject SVG and allow only safe raster types', () => {
+  const admin = read('src/routes/admin.js');
+
+  assert.doesNotMatch(admin, /svg/i);
+  assert.match(admin, /image\/png/);
+  assert.match(admin, /image\/jpeg/);
+  assert.match(admin, /image\/webp/);
+  assert.match(admin, /image\/gif/);
+  assert.match(admin, /path\.extname\(file\.originalname(?:\s*\|\|\s*['"]['"])?\)/);
+  assert.match(admin, /MulterError\(['"]LIMIT_UNEXPECTED_FILE['"]/);
+});
+

@@ -15,6 +15,7 @@ const effectiveSessionSecret = sessionSecret || crypto.randomBytes(32).toString(
 
 const app = express();
 app.disable('x-powered-by');
+if (isProduction) app.set('trust proxy', 1);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -27,7 +28,8 @@ app.use(cookieSession({
   keys: [effectiveSessionSecret],
   maxAge: 8 * 60 * 60 * 1000, // 8h
   sameSite: 'lax',
-  httpOnly: true
+  httpOnly: true,
+  secure: isProduction
 }));
 
 // dati globali per tutte le view
