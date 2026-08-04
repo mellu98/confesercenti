@@ -353,7 +353,8 @@ ol {
 }
 
 .brand img {
-  width: 100%;
+  height: clamp(46px, 5.5vw, 56px);
+  width: auto;
 }
 
 .main-nav {
@@ -1920,8 +1921,8 @@ a.opportunity-band__item:hover {
 }
 
 .footer-brand img {
-  width: min(290px, 100%);
-  filter: brightness(0) invert(1);
+  height: clamp(64px, 9vw, 84px);
+  width: auto;
 }
 
 .footer-brand p {

@@ -137,7 +137,7 @@ test('public shell exposes accessible landmarks, current navigation, and officia
   assert.match(html, /aria-controls="mainNav"/);
   assert.match(
     html,
-    /<img[^>]+src="\/images\/logo-confesercenti-pavia\.png"[^>]+alt="Pavia Esercenti"[^>]+width="\d+"[^>]+height="\d+"/
+    /<img[^>]+src="\/images\/logo-pavia-esercenti\.png"[^>]+alt="Pavia Esercenti"[^>]+width="\d+"[^>]+height="\d+"/
   );
 });
 
