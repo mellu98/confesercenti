@@ -338,7 +338,7 @@ ol {
 }
 
 .site-header__inner {
-  min-height: 94px;
+  min-height: 72px;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: clamp(28px, 4vw, 58px);
@@ -2003,7 +2003,7 @@ a.opportunity-band__item:hover {
 
   .site-header__inner {
     position: relative;
-    min-height: 82px;
+    min-height: 64px;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 20px;
   }
