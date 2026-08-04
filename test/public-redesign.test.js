@@ -11,7 +11,7 @@ const { sanitizePublicUrl } = require(path.join(ROOT, 'src', 'db'));
 const site = {
   name: 'Pavia Esercenti',
   tagline: 'Al fianco delle imprese del territorio.',
-  email: 'info@confesercentipavia.it',
+  email: 'info@paviaesercenti.it',
   phone: '0382 000000',
   address: 'Via Roma 1, 27100 Pavia (PV)',
   hours: 'Lun–Ven 8:30–13:00 / 14:00–17:30'
