@@ -353,7 +353,7 @@ ol {
 }
 
 .brand img {
-  height: clamp(38px, 4.5vw, 48px);
+  height: clamp(46px, 5.5vw, 56px);
   width: auto;
 }
 
@@ -1921,7 +1921,7 @@ a.opportunity-band__item:hover {
 }
 
 .footer-brand img {
-  height: clamp(52px, 7vw, 68px);
+  height: clamp(64px, 9vw, 84px);
   width: auto;
 }
 
