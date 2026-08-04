@@ -9,7 +9,7 @@ const PUBLIC_VIEWS = path.join(ROOT, 'views', 'public');
 const { sanitizePublicUrl } = require(path.join(ROOT, 'src', 'db'));
 
 const site = {
-  name: 'Confesercenti Pavia',
+  name: 'Pavia Esercenti',
   tagline: 'Al fianco delle imprese del territorio.',
   email: 'info@confesercentipavia.it',
   phone: '0382 000000',
@@ -137,7 +137,7 @@ test('public shell exposes accessible landmarks, current navigation, and officia
   assert.match(html, /aria-controls="mainNav"/);
   assert.match(
     html,
-    /<img[^>]+src="\/images\/logo-confesercenti-pavia\.png"[^>]+alt="Confesercenti Pavia"[^>]+width="\d+"[^>]+height="\d+"/
+    /<img[^>]+src="\/images\/logo-confesercenti-pavia\.png"[^>]+alt="Pavia Esercenti"[^>]+width="\d+"[^>]+height="\d+"/
   );
 });
 

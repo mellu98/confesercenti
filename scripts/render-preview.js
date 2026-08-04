@@ -33,7 +33,7 @@ function render(rel, locals) {
 
 // ---- dati demo (stessi del seed) ----
 const site = {
-  name: 'Confesercenti Pavia',
+  name: 'Pavia Esercenti',
   tagline: 'Al fianco delle imprese del commercio, del turismo e dei servizi di Pavia e provincia.',
   email: 'info@confesercentipavia.it', phone: '0382 000000',
   address: 'Via Roma 1, 27100 Pavia (PV)', hours: 'Lun–Ven 8:30–13:00 / 14:00–17:30',
@@ -69,13 +69,13 @@ const convenzioni = mk('convenzione', [
 ]);
 const partner = mk('partner', [
   ['Sarconix', 'Siti web, e-commerce, consulenze growth per brand e servizi digitali.',
-   'Sarconix è il partner digitale di Confesercenti Pavia. Realizza siti web professionali, piattaforme e-commerce, strategie di crescita (growth) per brand e servizi digitali in generale, aiutando le imprese del territorio a essere competitive online.',
+   'Sarconix è il partner digitale di Pavia Esercenti. Realizza siti web professionali, piattaforme e-commerce, strategie di crescita (growth) per brand e servizi digitali in generale, aiutando le imprese del territorio a essere competitive online.',
    'Partner digitale']
 ]);
 const notizie = mk('notizia', [
-  ['Benvenuti sul nuovo portale di Confesercenti Pavia',
+  ['Benvenuti sul nuovo portale di Pavia Esercenti',
    'È online il nuovo portale dell’associazione: più veloce, più chiaro, pensato per le imprese del territorio.',
-   'È online il nuovo sito di Confesercenti Pavia. Qui troverai notizie, servizi, convenzioni e tutti i contatti per la tua impresa.\n\nPer qualsiasi esigenza, la sezione Contatti è a tua disposizione.',
+   'È online il nuovo sito di Pavia Esercenti. Qui troverai notizie, servizi, convenzioni e tutti i contatti per la tua impresa.\n\nPer qualsiasi esigenza, la sezione Contatti è a tua disposizione.',
    'Associazione'],
   ['Commercio, i dati del primo semestre in provincia di Pavia',
    'L’osservatorio dell’associazione fotografa l’andamento delle attività commerciali sul territorio provinciale.',
@@ -87,7 +87,7 @@ const notizie = mk('notizia', [
    'HACCP, sicurezza sul lavoro e aggiornamenti obbligatori: aperte le iscrizioni ai corsi dell’associazione.',
    'Contenuto di esempio.', 'Formazione'],
   ['Convenzione energia: risparmi fino al 20% per gli associati',
-   'Rinnovato l’accordo con i fornitori di energia: tariffe dedicate a chi è iscritto a Confesercenti Pavia.',
+   'Rinnovato l’accordo con i fornitori di energia: tariffe dedicate a chi è iscritto a Pavia Esercenti.',
    'Contenuto di esempio.', 'Convenzioni']
 ]);
 const banners = {
@@ -116,7 +116,7 @@ const demoMsgs = withId([
 // ---- pagine da renderizzare ----
 const pages = [
   ['index.html', 'public/home.ejs', '/', { home, servizi, convenzioni, notizie, partner }],
-  ['associazione.html', 'public/associazione.ejs', '/associazione', { page: { title: 'Chi siamo', intro: 'Confesercenti Pavia è l’associazione di categoria che rappresenta le piccole e medie imprese del commercio, del turismo, dell’artigianato e dei servizi della provincia di Pavia.', body: 'Dal nostro insediamento sul territorio lavoriamo ogni giorno al fianco degli imprenditori: dialoghiamo con le istituzioni locali, promuoviamo lo sviluppo economico della provincia e offriamo servizi concreti a chi fa impresa.\n\nLa nostra missione è semplice: essere il punto di riferimento per chi vuole aprire, gestire e far crescere un’attività a Pavia e provincia.\n\nSiamo parte della rete nazionale Confesercenti, presente in tutta Italia con oltre 350.000 imprese associate.' } }],
+  ['associazione.html', 'public/associazione.ejs', '/associazione', { page: { title: 'Chi siamo', intro: 'Pavia Esercenti è l’associazione di categoria che rappresenta le piccole e medie imprese del commercio, del turismo, dell’artigianato e dei servizi della provincia di Pavia, in associazione con Confesercenti.', body: 'Dal nostro insediamento sul territorio lavoriamo ogni giorno al fianco degli imprenditori: dialoghiamo con le istituzioni locali, promuoviamo lo sviluppo economico della provincia e offriamo servizi concreti a chi fa impresa.\n\nLa nostra missione è semplice: essere il punto di riferimento per chi vuole aprire, gestire e far crescere un’attività a Pavia e provincia.\n\nSiamo parte della rete nazionale Confesercenti, presente in tutta Italia con oltre 350.000 imprese associate.' } }],
   ['servizi.html', 'public/servizi.ejs', '/servizi', { servizi }],
   ['convenzioni.html', 'public/convenzioni.ejs', '/convenzioni', { convenzioni }],
   ['notizie.html', 'public/notizie.ejs', '/notizie', { titolo: 'Notizie', base: '/notizie', posts: notizie }],
@@ -150,7 +150,7 @@ const pages = [
 const linkMap = {
   '/': 'index.html', '/associazione': 'associazione.html', '/servizi': 'servizi.html',
   '/convenzioni': 'convenzioni.html', '/notizie': 'notizie.html',
-  '/notizie/benvenuti-sul-nuovo-sito-di-confesercenti-pavia': 'notizia-benvenuti.html',
+  '/notizie/benvenuti-sul-nuovo-sito-di-pavia-esercenti': 'notizia-benvenuti.html',
   '/stampa': 'stampa.html', '/partnership': 'partnership.html', '/contatti': 'contatti.html',
   '/admin': 'admin-dashboard.html', '/admin/login': 'admin-login.html'
 };

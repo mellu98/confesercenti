@@ -1,4 +1,4 @@
-# Confesercenti Pavia — Sito vetrina + Admin
+# Pavia Esercenti — Sito vetrina + Admin
 
 Sito leggero (Node.js + Express + SQLite, ~60-80MB di RAM) con pannello admin completo, pronto per il deploy su **Railway** tramite Dockerfile.
 

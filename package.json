@@ -1,7 +1,7 @@
 {
-  "name": "confesercenti-pavia",
+  "name": "pavia-esercenti",
   "version": "1.0.0",
-  "description": "Sito vetrina + admin per Confesercenti Pavia",
+  "description": "Sito vetrina + admin per Pavia Esercenti (in associazione con Confesercenti)",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

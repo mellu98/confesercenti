@@ -10,7 +10,7 @@ Imprenditori, commercianti, artigiani, professionisti e aspiranti imprenditori d
 
 ## Product Purpose
 
-Confesercenti Pavia rappresenta le imprese locali e rende accessibili servizi, consulenza, convenzioni, opportunità e aggiornamenti utili. Il sito ha successo quando trasforma un bisogno spesso complesso in un percorso chiaro verso l’ufficio, il servizio o il contatto giusto.
+Pavia Esercenti (in associazione con Confesercenti) rappresenta le imprese locali e rende accessibili servizi, consulenza, convenzioni, opportunità e aggiornamenti utili. Il sito ha successo quando trasforma un bisogno spesso complesso in un percorso chiaro verso l’ufficio, il servizio o il contatto giusto.
 
 ## Brand Personality
 

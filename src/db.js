@@ -102,7 +102,7 @@ function seed() {
 
   if (getSetting('site') === null) {
     setSetting('site', {
-      name: 'Confesercenti Pavia',
+      name: 'Pavia Esercenti',
       tagline: 'Al fianco delle imprese del commercio, del turismo e dei servizi di Pavia e provincia.',
       email: 'info@confesercentipavia.it',
       phone: '0382 000000',
@@ -120,7 +120,7 @@ function seed() {
     });
     setSetting('associazione', {
       title: 'Chi siamo',
-      intro: 'Confesercenti Pavia è l’associazione di categoria che rappresenta le piccole e medie imprese del commercio, del turismo, dell’artigianato e dei servizi della provincia di Pavia.',
+      intro: 'Pavia Esercenti è l’associazione di categoria che rappresenta le piccole e medie imprese del commercio, del turismo, dell’artigianato e dei servizi della provincia di Pavia, in associazione con Confesercenti.',
       body: 'Dal nostro insediamento sul territorio lavoriamo ogni giorno al fianco degli imprenditori: dialoghiamo con le istituzioni locali, promuoviamo lo sviluppo economico della provincia e offriamo servizi concreti a chi fa impresa.\n\nLa nostra missione è semplice: essere il punto di riferimento per chi vuole aprire, gestire e far crescere un’attività a Pavia e provincia.\n\nSiamo parte della rete nazionale Confesercenti, presente in tutta Italia con oltre 350.000 imprese associate.'
     });
     setSetting('contatti', {
@@ -151,14 +151,14 @@ function seed() {
     ins.run({
       type: 'partner', title: 'Sarconx', slug: 'sarconx',
       excerpt: 'Siti web, e-commerce, consulenze growth per brand e servizi digitali.',
-      body: 'Sarconx è il partner digitale di Confesercenti Pavia. Realizza siti web professionali, piattaforme e-commerce, strategie di crescita (growth) per brand e servizi digitali in generale, aiutando le imprese del territorio a essere competitive online.\n\nEmail: info@sarconx.com',
+      body: 'Sarconx è il partner digitale di Pavia Esercenti. Realizza siti web professionali, piattaforme e-commerce, strategie di crescita (growth) per brand e servizi digitali in generale, aiutando le imprese del territorio a essere competitive online.\n\nEmail: info@sarconx.com',
       tag: 'Partner digitale', link: 'https://sarconx.com', sort: 0
     });
 
     const notizie = [
-      ['Benvenuti sul nuovo portale di Confesercenti Pavia',
+      ['Benvenuti sul nuovo portale di Pavia Esercenti',
        'È online il nuovo portale dell’associazione: più veloce, più chiaro, pensato per le imprese del territorio.',
-       'È online il nuovo sito di Confesercenti Pavia. Qui troverai notizie, servizi, convenzioni e tutti i contatti per la tua impresa.\n\nPer qualsiasi esigenza, la sezione Contatti è a tua disposizione.',
+       'È online il nuovo sito di Pavia Esercenti. Qui troverai notizie, servizi, convenzioni e tutti i contatti per la tua impresa.\n\nPer qualsiasi esigenza, la sezione Contatti è a tua disposizione.',
        'Associazione'],
       ['Commercio, i dati del primo semestre in provincia di Pavia',
        'L’osservatorio dell’associazione fotografa l’andamento delle attività commerciali sul territorio provinciale.',
@@ -173,7 +173,7 @@ function seed() {
        'Contenuto di esempio: aggiorna dal pannello admin con il calendario reale.',
        'Formazione'],
       ['Convenzione energia: risparmi fino al 20% per gli associati',
-       'Rinnovato l’accordo con i fornitori di energia: tariffe dedicate a chi è iscritto a Confesercenti Pavia.',
+       'Rinnovato l’accordo con i fornitori di energia: tariffe dedicate a chi è iscritto a Pavia Esercenti.',
        'Contenuto di esempio: aggiorna dal pannello admin.',
        'Convenzioni']
     ];

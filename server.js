@@ -60,4 +60,4 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, '0.0.0.0', () => console.log(`Confesercenti Pavia in ascolto su :${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Pavia Esercenti in ascolto su :${PORT}`));
