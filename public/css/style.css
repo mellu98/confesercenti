@@ -353,7 +353,7 @@ ol {
 }
 
 .brand img {
-  height: clamp(46px, 5.5vw, 56px);
+  height: clamp(52px, 6.5vw, 64px);
   width: auto;
 }
 
